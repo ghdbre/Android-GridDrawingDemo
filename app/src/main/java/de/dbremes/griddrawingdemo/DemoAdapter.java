@@ -19,7 +19,7 @@ public class DemoAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         TextView textView = new TextView(mContext);
-        textView.setTextSize(20);
+        textView.setTextSize(16);
         return new DemoViewHolder(textView);
     }
 

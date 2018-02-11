@@ -7,20 +7,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public class DemoItemDecoration extends RecyclerView.ItemDecoration {
+    final Paint mPaint;
+
+    public DemoItemDecoration() {
+        mPaint = new Paint();
+        mPaint.setColor(Color.BLACK);
+        mPaint.setStrokeWidth(3);
+    }
 
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         float startX = parent.getPaddingLeft();
-        View childToDrawUnder = parent.getChildAt(50);
+        View childToDrawUnder = parent.getChildAt(150);
         float startY = Float.NaN;
         if (childToDrawUnder != null) {
             startY = childToDrawUnder.getBottom();
         }
         float endX = parent.getWidth() - parent.getPaddingRight();
         float endY = startY;
-        Paint paint = new Paint();
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(3);
-        c.drawLine(startX, startY, endX, endY, paint);
+        c.drawLine(startX, startY, endX, endY, mPaint);
     }
 }
