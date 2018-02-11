@@ -9,10 +9,10 @@ import android.util.Log;
 import android.view.View;
 
 public class DemoItemDecoration extends RecyclerView.ItemDecoration {
-    final String TAG = DemoItemDecoration.class.getSimpleName();
     final Paint mPaint;
 
     public DemoItemDecoration() {
+        // For better performance don't create mPaint in each onDraw()
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(3);
@@ -21,17 +21,21 @@ public class DemoItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         float startX = parent.getPaddingLeft();
-        GridLayoutManager lm = (GridLayoutManager)parent.getLayoutManager();
-        int firstVisibleItemPosition = lm.findFirstVisibleItemPosition();
-        Log.v(TAG, "firstVisibleItemPosition=" + firstVisibleItemPosition);
-        int childToDrawUnderPosition = 150 - firstVisibleItemPosition;
-        View childToDrawUnder = parent.getChildAt(childToDrawUnderPosition);
-        float startY = Float.NaN;
-        if (childToDrawUnder != null) {
-            startY = childToDrawUnder.getBottom();
-        }
+        float startY = getYPositionOfLine(parent);
         float endX = parent.getWidth() - parent.getPaddingRight();
         float endY = startY;
         c.drawLine(startX, startY, endX, endY, mPaint);
+    }
+
+    private float getYPositionOfLine(RecyclerView parent) {
+        float result = Float.NaN;
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            if (parent.getChildLayoutPosition(parent.getChildAt(i)) >= 150
+                    && parent.getChildLayoutPosition(parent.getChildAt(i)) < 160) {
+                result = parent.getChildAt(i).getBottom();
+                break;
+            }
+        }
+        return result;
     }
 }
