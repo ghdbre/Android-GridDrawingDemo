@@ -1,28 +1,34 @@
 package de.dbremes.griddrawingdemo;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
-import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private GridLayoutManager mGridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // Set up RecyclerView
         List<DemoItem> demoItems = createDemoItems();
-        GridView gridview = (GridView) findViewById(R.id.gridview);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         DemoAdapter demoAdapter = new DemoAdapter(this, demoItems);
-        gridview.setAdapter(demoAdapter);
+        recyclerView.setAdapter(demoAdapter);
+        // Set up GridLayoutManager
+        int spanCount = 10;
+        mGridLayoutManager = new GridLayoutManager(this, spanCount);
+        recyclerView.setLayoutManager(mGridLayoutManager);
     }
 
     private List<DemoItem> createDemoItems() {
-        List<DemoItem> demoItems = new ArrayList<DemoItem>();
-        for (int i =0; i < 50; i++)
+        List<DemoItem> demoItems = new ArrayList<>();
+        for (int i = 0; i < 50; i++)
             demoItems.add(new DemoItem(i));
         return demoItems;
     }

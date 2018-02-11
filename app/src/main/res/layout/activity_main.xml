@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gridview"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnWidth="90dp"
-    android:numColumns="10"
-    android:verticalSpacing="10dp"
-    android:horizontalSpacing="10dp"
-    android:stretchMode="none"
-    android:gravity="center"
-    />
+    tools:context="de.dbremes.griddrawingdemo.MainActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"/>
+</android.support.constraint.ConstraintLayout>

@@ -1,9 +1,13 @@
 package de.dbremes.griddrawingdemo;
 
 public class DemoItem {
-    public int Id;
+    private int mId;
 
     public DemoItem(int id) {
-        this.Id = id;
+        mId = id;
+    }
+
+    public String getText() {
+        return Integer.toString(mId);
     }
 }

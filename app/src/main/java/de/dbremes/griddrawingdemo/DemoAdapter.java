@@ -1,14 +1,13 @@
 package de.dbremes.griddrawingdemo;
 
 import android.content.Context;
-import android.view.View;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class DemoAdapter extends BaseAdapter {
+public class DemoAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<DemoItem> mDemoItems;
 
@@ -18,30 +17,19 @@ public class DemoAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        TextView textView = new TextView(mContext);
+        textView.setTextSize(20);
+        return new DemoViewHolder(textView);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ((DemoViewHolder)holder).setText(mDemoItems.get(position).getText());
+    }
+
+    @Override
+    public int getItemCount() {
         return mDemoItems.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return mDemoItems.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return mDemoItems.get(i).Id;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        TextView textView;
-        if (view == null) {
-            // if it's not recycled, initialize some attributes
-            textView = new TextView(mContext);
-        } else {
-            textView = (TextView) view;
-        }
-        textView.setText(Integer.toString(mDemoItems.get(i).Id));
-        return textView;
     }
 }
