@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Set up RecyclerView
-        List<DemoItem> demoItems = createDemoItems(300);
+        List<DemoItem> demoItems = createDemoItems(500);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         DemoAdapter demoAdapter = new DemoAdapter(this, demoItems);
         recyclerView.setAdapter(demoAdapter);

@@ -29,7 +29,7 @@ public class DemoItemDecoration extends RecyclerView.ItemDecoration {
 
     private float getYPositionOfLine(RecyclerView parent) {
         float result = Float.NaN;
-        for (int i = 0; i < parent.getChildCount(); i++) {
+        for (int i = 0; i < parent.getChildCount(); i+=10) {
             if (parent.getChildLayoutPosition(parent.getChildAt(i)) >= 150
                     && parent.getChildLayoutPosition(parent.getChildAt(i)) < 160) {
                 result = parent.getChildAt(i).getBottom();
