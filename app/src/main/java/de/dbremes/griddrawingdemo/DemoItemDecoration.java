@@ -14,7 +14,7 @@ public class DemoItemDecoration extends RecyclerView.ItemDecoration {
     public DemoItemDecoration() {
         // For better performance don't create mPaint in each onDraw()
         mPaint = new Paint();
-        mPaint.setColor(Color.BLACK);
+        mPaint.setColor(Color.RED);
         mPaint.setStrokeWidth(3);
     }
 
@@ -25,11 +25,12 @@ public class DemoItemDecoration extends RecyclerView.ItemDecoration {
         float endX = parent.getWidth() - parent.getPaddingRight();
         float endY = startY;
         c.drawLine(startX, startY, endX, endY, mPaint);
+        Log.v("DemoItemDecoration", "parent.getChildCount()=" + parent.getChildCount());
     }
 
     private float getYPositionOfLine(RecyclerView parent) {
         float result = Float.NaN;
-        for (int i = 0; i < parent.getChildCount(); i+=10) {
+        for (int i = 0; i < parent.getChildCount(); i += 10) {
             if (parent.getChildLayoutPosition(parent.getChildAt(i)) >= 150
                     && parent.getChildLayoutPosition(parent.getChildAt(i)) < 160) {
                 result = parent.getChildAt(i).getBottom();
