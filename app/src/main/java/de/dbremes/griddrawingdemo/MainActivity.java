@@ -9,22 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private GridLayoutManager mGridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Set up RecyclerView
+        // Set up DemoAdapter
         List<DemoItem> demoItems = createDemoItems(500);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         DemoAdapter demoAdapter = new DemoAdapter(this, demoItems);
+        // Set up RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setAdapter(demoAdapter);
         recyclerView.addItemDecoration(new DemoItemDecoration());
         // Set up GridLayoutManager
         int spanCount = 10;
-        mGridLayoutManager = new GridLayoutManager(this, spanCount);
-        recyclerView.setLayoutManager(mGridLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount);
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
 
     private List<DemoItem> createDemoItems(int amount) {

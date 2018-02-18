@@ -7,8 +7,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 public class DemoItemDecoration extends RecyclerView.ItemDecoration {
+    static final String TAG = DemoItemDecoration.class.getSimpleName();
     final Paint mPaint;
 
     public DemoItemDecoration() {
@@ -25,7 +27,12 @@ public class DemoItemDecoration extends RecyclerView.ItemDecoration {
         float endX = parent.getWidth() - parent.getPaddingRight();
         float endY = startY;
         c.drawLine(startX, startY, endX, endY, mPaint);
-        Log.v("DemoItemDecoration", "parent.getChildCount()=" + parent.getChildCount());
+        TextView textView = (TextView)parent.getChildAt(150);
+        // Shows that RecyclerView's position != DemoAdapter's position which is what we
+        // actually need
+        Log.d(TAG,"parent.getChildAt(150)).getText()=" + textView.getText());
+        // Shows that RecyclerView keeps only up to 250 items (10 columns * 22 rows + spare rows)
+        Log.d(TAG, "parent.getChildCount()=" + parent.getChildCount());
     }
 
     private float getYPositionOfLine(RecyclerView parent) {
